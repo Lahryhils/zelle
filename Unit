@@ -1,0 +1,16 @@
+//Context initialization (defining input)
+
+def caze = factory.newCase();
+def form = factory.newForm(caze);
+def script = resp.script.get("control_number_script");
+script.setContextParam("resp", resp);
+script.setContextParam("form", form);
+
+//Script Execution
+resp.script.execute(script);
+
+//Assertion
+Assert.isNotNull(form.getField("control_number").value);
+Assert.eq("CN-123", form.getField("control_number").value);
+
+
